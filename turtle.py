@@ -16,7 +16,7 @@ def main():
 
 def parse_instruction(line):
     actionable = []
-    print(line)
+    #print(line)
     instructions = line.split(" ")
     if len(instructions) == 0:
         return
@@ -31,7 +31,8 @@ def parse_instruction(line):
 
 
 def route_instruction(instruction):
-    print(instruction)
+    #print(instruction)
+    # set "value" if instruction is more than 1 element
     if len(instruction) == 1:
         control = instruction[0]
         value = ""
@@ -51,12 +52,21 @@ def route_instruction(instruction):
         inst_pen_control(control)
 
     # directional
-    #if control == "W":
-    #    inst_direction_west("W")
+    if control == "N":
+        inst_direction("NORTH", value)
+
+    if control == "S":
+        inst_direction("SOUTH", value)
+
+    if control == "E":
+        inst_direction("EAST", value)
+
+    if control == "W":
+        inst_direction("WEST", value)
 
 
 def inst_select_pen(pen):
-    print("Pen selected: ", pen)
+    print("PEN SELECTED:", pen)
 
 
 def inst_pen_control(value):
@@ -64,6 +74,13 @@ def inst_pen_control(value):
         print("PEN IS DOWN")
     else:
         print("PEN IS UP")
+
+
+def inst_direction(direction, distance):
+    if distance == "":
+        distance = 1
+
+    print("MOVE", direction, distance)
 
 
 if __name__ == '__main__':
